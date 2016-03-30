@@ -19,6 +19,7 @@ Installation with NuGet Package Manager Console [[1]]:
 | Date | Hours | Task |
 | :---: | :---: | :---: |
 | 18.3.2016 | 2 | Setup project and gather information |
-| Total hours: | 2 |  |
+| 30.3.2016 | 2 | Integrate Twitterizer |
+| Total hours: | 4 |  |
 
 [1]: https://www.nuget.org/packages/twitterizer/
