@@ -20,7 +20,7 @@ Installation with NuGet Package Manager Console [[1]]:
 | :---: | :---: | :---: |
 | 18.3.2016 | 2 | Setup project and gather information |
 | 30.3.2016 | 2 | Integrate Twitterizer |
-| 31.3.2016 | 2 | Change to TweetSharp |
-| Total hours: | 6 |  |
+| 31.3.2016 | 5 | Change to TweetSharp. Add basic login and get timeline |
+| Total hours: | 9 |  |
 
 [1]: https://www.nuget.org/packages/TweetSharp/
