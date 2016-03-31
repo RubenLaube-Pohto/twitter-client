@@ -8,17 +8,18 @@ The purpose of this project is to create a simple client program for Twitter usi
 
 ## Requirements
 
-[Twitterizer](https://github.com/Twitterizer/Twitterizer) 2.4.2
+[TweetSharp](https://github.com/danielcrenna/tweetsharp) 2.3.1
 
 Installation with NuGet Package Manager Console [[1]]:
 
-    Install-Package twitterizer -Version 2.4.2
+	Install-Package TweetSharp -Version 2.3.1
 
 ## Spent Time
 
 | Date | Hours | Task |
 | :---: | :---: | :---: |
 | 18.3.2016 | 2 | Setup project and gather information |
+| 31.3.2016 | 2 | Setup project and gather information |
 | Total hours: | 2 |  |
 
-[1]: https://www.nuget.org/packages/twitterizer/
+[1]: https://www.nuget.org/packages/TweetSharp/
