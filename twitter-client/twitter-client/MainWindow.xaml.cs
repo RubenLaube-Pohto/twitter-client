@@ -35,6 +35,7 @@ namespace twitter_client
         private void GetTimeline()
         {
             ListTweetsOnHomeTimelineOptions options = new ListTweetsOnHomeTimelineOptions();
+            //options.Count = 800; // 800 is max returned
             dgTweets.DataContext = service.ListTweetsOnHomeTimeline(options);
         }
     }

@@ -14,8 +14,8 @@
             </StackPanel>
             <StackPanel x:Name="spPin" Visibility="Visible">
                 <TextBlock>Please input the pin received after authorizing:</TextBlock>
-                <TextBox x:Name="txtPin"></TextBox>
-                <Button x:Name="btnSubmit" Click="btnSubmit_Click">Submit</Button>
+                <TextBox x:Name="txtPin" TextChanged="txtPin_TextChanged"></TextBox>
+                <Button x:Name="btnSubmit" Click="btnSubmit_Click" IsEnabled="False">Submit</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
