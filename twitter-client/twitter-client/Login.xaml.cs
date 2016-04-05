@@ -46,10 +46,10 @@ namespace twitter_client
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load("logindata.xml");
-                XmlNode root = doc.FirstChild;
-                string token = root.ChildNodes[0].InnerText;
-                string tokenSecret = root.ChildNodes[1].InnerText;
+                doc.Load(ConfigurationManager.AppSettings["LoginDataFile"]);
+                XmlNode root = doc.LastChild;
+                string token = root.FirstChild.InnerText;
+                string tokenSecret = root.LastChild.InnerText;
                 service.AuthenticateWith(token, tokenSecret);
                 MoveToMain();
             }
@@ -83,8 +83,22 @@ namespace twitter_client
             OAuthAccessToken access = service.GetAccessToken(requestToken, verifier);
 
             // Step 4 - User authenticates using the Access Token
-            // TODO: Save tokens for easier login later
             service.AuthenticateWith(access.Token, access.TokenSecret);
+
+            // Save tokens to file for faster login the next time
+            using (XmlWriter writer = XmlWriter.Create(ConfigurationManager.AppSettings["LoginDataFile"]))
+            {
+                writer.WriteStartDocument();
+                writer.WriteStartElement("logindata");
+                writer.WriteStartElement("token");
+                writer.WriteString(access.Token);
+                writer.WriteEndElement();
+                writer.WriteStartElement("tokenSecret");
+                writer.WriteString(access.TokenSecret);
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.WriteEndDocument();
+            }
 
             MoveToMain();
         }
@@ -98,6 +112,7 @@ namespace twitter_client
 
         private void txtPin_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Check that the pin is only numbers and of the right length
             Regex regex = new Regex("^[0-9]{7}$");
             if (regex.IsMatch(txtPin.Text))
             {

@@ -7,11 +7,19 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <DataGrid x:Name="dgTweets" ItemsSource="{Binding}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Author" Binding="{Binding Path=Author.Name}"/>
-                <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel>
+            <StackPanel>
+                <Button x:Name="btnLogout" Click="btnLogout_Click">Logout</Button>
+            </StackPanel>
+            <StackPanel>
+                <DataGrid x:Name="dgTweets" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Author" Binding="{Binding Path=Author.Name}"/>
+                        <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </Window>

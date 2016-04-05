@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,7 +37,26 @@ namespace twitter_client
         {
             ListTweetsOnHomeTimelineOptions options = new ListTweetsOnHomeTimelineOptions();
             //options.Count = 800; // 800 is max returned
-            dgTweets.DataContext = service.ListTweetsOnHomeTimeline(options);
+            IEnumerable<TwitterStatus> tweets = service.ListTweetsOnHomeTimeline(options);
+            dgTweets.DataContext = tweets;
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                File.Delete(ConfigurationManager.AppSettings["LoginDataFile"]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Login login = new Login();
+                login.Show();
+                this.Close();
+            }
         }
     }
 }
