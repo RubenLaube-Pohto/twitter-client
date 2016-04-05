@@ -34,6 +34,7 @@ Twitterizer seemed too complicated so TweetrSharp was chosen instead.
 | 18.3.2016 | 2 | Setup project and gather information |
 | 30.3.2016 | 2 | Integrate Twitterizer |
 | 31.3.2016 | 5 | Change to TweetSharp. Add basic login and get timeline |
-| Total hours: | 9 |  |
+| 4.4.2016 | 3 | Implement login pin checking and save credentials |
+| Total hours: | 12 |  |
 
 [1]: https://www.nuget.org/packages/TweetSharp/
