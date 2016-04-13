@@ -50,7 +50,10 @@ Many finer aspects of the Twitter service had to be left out due to time constra
 
 ### Screenshots
 
-To be added.
+![login](/screenshots/login.png)
+![login pin](/screenshots/login_pin.png)
+![main](/screenshots/main_home-timeline.png)
+![main status update](/screenshots/main_new-tweet.png)
 
 ### Further development
 
