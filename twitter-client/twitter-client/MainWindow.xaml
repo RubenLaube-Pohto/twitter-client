@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:twitter_client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="600" Width="525">
     <Grid>
         <DockPanel Margin="10">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
@@ -21,10 +21,18 @@
                     <Button x:Name="btnCancel_tweet" Click="btnCancel_tweet_Click" Margin="5,0,0,0">Cancel</Button>
                 </StackPanel>
             </StackPanel>
-            <DataGrid x:Name="dgTweets" DockPanel.Dock="Left" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,5,0,0">
+            <DataGrid x:Name="dgTweets" DockPanel.Dock="Left" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,5,0,0" HorizontalScrollBarVisibility="Disabled">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Author" Binding="{Binding Path=Author.Name}"/>
-                    <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}"/>
+                    <DataGridTextColumn Header="Date" Binding="{Binding Path=CreatedDate}"/>
+                    <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}" Width="200">
+                        <!-- Enable column text to wrap -->
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
