@@ -30,7 +30,6 @@ namespace twitter_client
         {
             InitializeComponent();
             this.service = service;
-            GetTimeline();
         }
 
         private void GetTimeline()
@@ -57,6 +56,11 @@ namespace twitter_client
                 login.Show();
                 this.Close();
             }
+        }
+
+        private void btnGet_timeline_Click(object sender, RoutedEventArgs e)
+        {
+            GetTimeline();
         }
     }
 }
