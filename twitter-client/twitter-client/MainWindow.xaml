@@ -5,40 +5,73 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:twitter_client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="525">
+        Title="MainWindow" Height="600" Width="600">
     <Grid>
         <DockPanel Margin="10">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
-                <Button x:Name="btnGet_timeline" Click="btnGet_timeline_Click">Get home timeline</Button>
-                <Button x:Name="btnGet_my_tweets" Margin="5,0,0,0" Click="btnGet_my_tweets_Click">Get my tweets</Button>
-                <Button x:Name="btnNew_tweet" Margin="5,0,0,0" Click="btnNew_tweet_Click">New tweet</Button>
-                <Button x:Name="btnLogout" Click="btnLogout_Click" Margin="5,0,0,0">Logout</Button>
+                <Button x:Name="btnGet_timeline"
+                        Click="btnGet_timeline_Click"
+                        Content="Get home timeline"/>
+                <Button x:Name="btnGet_my_tweets"
+                        Click="btnGet_my_tweets_Click"
+                        Content="Get my tweets"
+                        Margin="5,0,0,0"/>
+                <Button x:Name="btnNew_tweet"
+                        Click="btnNew_tweet_Click"
+                        Content="New tweet"
+                        Margin="5,0,0,0"/>
+                <Button x:Name="btnLogout"
+                        Click="btnLogout_Click"
+                        Content="Logout"
+                        Margin="5,0,0,0"/>
             </StackPanel>
-            <StackPanel x:Name="spSend_tweet" DockPanel.Dock="Top" Visibility="Collapsed" Margin="0,10,0,5">
+            <StackPanel x:Name="spSend_tweet"
+                        DockPanel.Dock="Top"
+                        Margin="0,10,0,5"
+                        Visibility="Collapsed">
                 <StackPanel Width="300">
-                    <TextBox x:Name="txtTweet" Height="100" TextWrapping="Wrap" TextChanged="txtTweet_TextChanged"/>
-                    <TextBlock x:Name="tbCharacter_count" HorizontalAlignment="Right">0 / 140</TextBlock>
+                    <TextBox x:Name="txtTweet"
+                             Height="100"
+                             TextChanged="txtTweet_TextChanged"
+                             TextWrapping="Wrap"/>
+                    <TextBlock x:Name="tbCharacter_count"
+                               HorizontalAlignment="Right"
+                               Text="0 / 140"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Center">
-                    <Button x:Name="btnSend_tweet" Click="btnSend_tweet_Click">Send</Button>
-                    <Button x:Name="btnCancel_tweet" Click="btnCancel_tweet_Click" Margin="5,0,0,0">Cancel</Button>
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <Button x:Name="btnSend_tweet"
+                            Click="btnSend_tweet_Click"
+                            Content="Send"/>
+                    <Button x:Name="btnCancel_tweet"
+                            Click="btnCancel_tweet_Click"
+                            Content="Cancel"
+                            Margin="5,0,0,0"/>
                 </StackPanel>
             </StackPanel>
-            <DataGrid x:Name="dgTweets" DockPanel.Dock="Left" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,5,0,0" HorizontalScrollBarVisibility="Disabled">
+            <DataGrid x:Name="dgTweets"
+                      AutoGenerateColumns="False"
+                      DockPanel.Dock="Left"
+                      ItemsSource="{Binding}"
+                      Margin="0,5,0,0">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Author" Binding="{Binding Path=Author.Name}"/>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Path=CreatedDate}"/>
-                    <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}" Width="200">
+                    <DataGridTextColumn Binding="{Binding Path=Author.Name}"
+                                        Header="Author"/>
+                    <DataGridTextColumn Binding="{Binding Path=CreatedDate}"
+                                        Header="Date"/>
+                    <DataGridTextColumn Binding="{Binding Path=Text}"
+                                        Header="Tweet"
+                                        Width="300">
                         <!-- Enable column text to wrap -->
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
-                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="TextWrapping"
+                                        Value="Wrap"/>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>
-
     </Grid>
 </Window>

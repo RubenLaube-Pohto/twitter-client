@@ -9,13 +9,25 @@
     <Grid>
         <StackPanel Margin="10">
             <StackPanel>
-                <Button x:Name="btnLogin" Click="btnLogin_Click">Login</Button>
-                <Button x:Name="btnQuit" Click="btnQuit_Click" Margin="0,5,0,0">Quit</Button>
+                <Button x:Name="btnLogin"
+                        Click="btnLogin_Click"
+                        Content="Login"/>
+                <Button x:Name="btnQuit"
+                        Click="btnQuit_Click"
+                        Content="Quit"
+                        Margin="0,5,0,0"/>
             </StackPanel>
-            <StackPanel x:Name="spPin" Visibility="Visible" Margin="0,15,0,0">
-                <TextBlock>Please input the pin received after authorizing:</TextBlock>
-                <TextBox x:Name="txtPin" TextChanged="txtPin_TextChanged"></TextBox>
-                <Button x:Name="btnSubmit" Click="btnSubmit_Click" IsEnabled="False" Margin="0,5,0,0">Submit</Button>
+            <StackPanel x:Name="spPin"
+                        Margin="0,15,0,0"
+                        Visibility="Visible">
+                <TextBlock Text="Please input the pin received after authorizing:"/>
+                <TextBox x:Name="txtPin"
+                         TextChanged="txtPin_TextChanged"/>
+                <Button x:Name="btnSubmit"
+                        Click="btnSubmit_Click"
+                        Content="Submit"
+                        IsEnabled="False"
+                        Margin="0,5,0,0"/>
             </StackPanel>
         </StackPanel>
     </Grid>

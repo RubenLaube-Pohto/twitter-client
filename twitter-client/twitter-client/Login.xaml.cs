@@ -1,26 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ * This file is part of the Windows Programming end of course project.
+ *
+ * Modified: 13.04.2016
+ * Authors: Ruben Laube-Pohto
+ */
+
+using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Xml;
 using TweetSharp;
 
 namespace twitter_client
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for Login.xaml.
+    /// Handles the login process.
     /// </summary>
     public partial class Login : Window
     {
@@ -33,6 +32,9 @@ namespace twitter_client
             Init();
         }
 
+        /// <summary>
+        /// Load keys from configuration file and initialize TwitterService
+        /// </summary>
         private void Init()
         {
             spPin.Visibility = Visibility.Hidden;
@@ -41,10 +43,15 @@ namespace twitter_client
             service = new TwitterService(consumerKey, consumerSecret);
         }
 
+        /// <summary>
+        /// Begin login process.
+        /// </summary>
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            // Try to see if the user has already logged in
             try
             {
+                // Look for the file containing previous tokens
                 XmlDocument doc = new XmlDocument();
                 doc.Load(ConfigurationManager.AppSettings["LoginDataFile"]);
                 XmlNode root = doc.LastChild;
@@ -53,6 +60,8 @@ namespace twitter_client
                 service.AuthenticateWith(token, tokenSecret);
                 MoveToMain();
             }
+            // Login file not found so begin online authorization via browser.
+            // Login process continues by inputing the pin recived later.
             catch (FileNotFoundException ex)
             {
                 // Step 1 - Retrieve an OAuth Request Token
@@ -65,17 +74,24 @@ namespace twitter_client
                 spPin.Visibility = Visibility.Visible;
                 btnLogin.IsEnabled = false;
             }
+            // Something went wrong
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
 
+        /// <summary>
+        /// Exit application
+        /// </summary>
         private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
 
+        /// <summary>
+        /// Confirm pin input
+        /// </summary>
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             // Step 3 - Exchange the Request Token for an Access Token
@@ -103,6 +119,9 @@ namespace twitter_client
             MoveToMain();
         }
 
+        /// <summary>
+        /// Close login and open main-window
+        /// </summary>
         private void MoveToMain()
         {
             MainWindow main = new MainWindow(service);
@@ -110,6 +129,9 @@ namespace twitter_client
             this.Close();
         }
 
+        /// <summary>
+        /// Check that the pin input is valid
+        /// </summary>
         private void txtPin_TextChanged(object sender, TextChangedEventArgs e)
         {
             // Check that the pin is only numbers and of the right length

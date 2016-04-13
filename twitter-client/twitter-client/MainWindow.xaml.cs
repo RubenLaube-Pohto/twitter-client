@@ -1,26 +1,23 @@
-﻿using System;
+﻿/*
+ * This file is part of the Windows Programming end of course project.
+ *
+ * Modified: 13.04.2016
+ * Authors: Ruben Laube-Pohto
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using TweetSharp;
 
 namespace twitter_client
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml.
+    /// Contains most of the programs functionality.
     /// </summary>
     public partial class MainWindow : Window
     {
@@ -32,14 +29,9 @@ namespace twitter_client
             this.service = service;
         }
 
-        private void GetTimeline()
-        {
-            ListTweetsOnHomeTimelineOptions options = new ListTweetsOnHomeTimelineOptions();
-            //options.Count = 800; // 800 is max returned
-            IEnumerable<TwitterStatus> tweets = service.ListTweetsOnHomeTimeline(options);
-            dgTweets.DataContext = tweets;
-        }
-
+        /// <summary>
+        /// Logout the user by deleting creditentials from the disk
+        /// </summary>
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -52,27 +44,42 @@ namespace twitter_client
             }
             finally
             {
+                // Display login-window
                 Login login = new Login();
                 login.Show();
                 this.Close();
             }
         }
 
+        /// <summary>
+        /// Get user's home timeline
+        /// </summary>
         private void btnGet_timeline_Click(object sender, RoutedEventArgs e)
         {
-            GetTimeline();
+            ListTweetsOnHomeTimelineOptions options = new ListTweetsOnHomeTimelineOptions();
+            IEnumerable<TwitterStatus> tweets = service.ListTweetsOnHomeTimeline(options);
+            dgTweets.DataContext = tweets;
         }
 
+        /// <summary>
+        /// Open 'new tweet'-form
+        /// </summary>
         private void btnNew_tweet_Click(object sender, RoutedEventArgs e)
         {
             ToggleNewTweet();
         }
 
+        /// <summary>
+        /// Close 'new tweet'-form
+        /// </summary>
         private void btnCancel_tweet_Click(object sender, RoutedEventArgs e)
         {
             ToggleNewTweet();
         }
 
+        /// <summary>
+        /// Send new tweet / status update
+        /// </summary>
         private void btnSend_tweet_Click(object sender, RoutedEventArgs e)
         {
             SendTweetOptions options = new SendTweetOptions();
@@ -83,19 +90,9 @@ namespace twitter_client
             ToggleNewTweet();
         }
 
-        private void ToggleNewTweet()
-        {
-            if (btnNew_tweet.IsEnabled)
-                btnNew_tweet.IsEnabled = false;
-            else
-                btnNew_tweet.IsEnabled = true;
-
-            if (spSend_tweet.Visibility == Visibility.Collapsed)
-                spSend_tweet.Visibility = Visibility.Visible;
-            else
-                spSend_tweet.Visibility = Visibility.Collapsed;
-        }
-
+        /// <summary>
+        /// Display user's own tweets in the datagrid
+        /// </summary>
         private void btnGet_my_tweets_Click(object sender, RoutedEventArgs e)
         {
             ListTweetsOnUserTimelineOptions options = new ListTweetsOnUserTimelineOptions();
@@ -103,6 +100,11 @@ namespace twitter_client
             dgTweets.DataContext = tweets;
         }
 
+        /// <summary>
+        /// On input to txtTweet check that the length of the tweet is
+        /// 140 characters or less. This is not an accurate method
+        /// and the check should propably be more complex.
+        /// </summary>
         private void txtTweet_TextChanged(object sender, TextChangedEventArgs e)
         {
             const int MAX_CHARS = 140;
@@ -114,6 +116,22 @@ namespace twitter_client
                 btnSend_tweet.IsEnabled = false;
             else
                 btnSend_tweet.IsEnabled = true;
+        }
+
+        /// <summary>
+        /// Switch 'new tweet'-form on and off
+        /// </summary>
+        private void ToggleNewTweet()
+        {
+            if (btnNew_tweet.IsEnabled)
+                btnNew_tweet.IsEnabled = false;
+            else
+                btnNew_tweet.IsEnabled = true;
+
+            if (spSend_tweet.Visibility == Visibility.Collapsed)
+                spSend_tweet.Visibility = Visibility.Visible;
+            else
+                spSend_tweet.Visibility = Visibility.Collapsed;
         }
     }
 }
