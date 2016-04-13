@@ -42,7 +42,7 @@ The compiled application doesn't need to be installed and can be used as is with
 
 The final application allows the user to
 - login
-- get tweet from home timeline
+- get tweets from home timeline
 - get own tweets
 - send basic tweets
 
