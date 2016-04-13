@@ -62,5 +62,38 @@ namespace twitter_client
         {
             GetTimeline();
         }
+
+        private void btnNew_tweet_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleNewTweet();
+        }
+
+        private void btnCancel_tweet_Click(object sender, RoutedEventArgs e)
+        {
+            ToggleNewTweet();
+        }
+
+        private void btnSend_tweet_Click(object sender, RoutedEventArgs e)
+        {
+            SendTweetOptions options = new SendTweetOptions();
+            options.Status = txtTweet.Text;
+            service.SendTweet(options);
+            MessageBox.Show("Tweet sent!");
+            txtTweet.Text = "";
+            ToggleNewTweet();
+        }
+
+        private void ToggleNewTweet()
+        {
+            if (btnNew_tweet.IsEnabled)
+                btnNew_tweet.IsEnabled = false;
+            else
+                btnNew_tweet.IsEnabled = true;
+
+            if (spSend_tweet.Visibility == Visibility.Collapsed)
+                spSend_tweet.Visibility = Visibility.Visible;
+            else
+                spSend_tweet.Visibility = Visibility.Collapsed;
+        }
     }
 }
