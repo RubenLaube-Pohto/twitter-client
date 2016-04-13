@@ -102,5 +102,18 @@ namespace twitter_client
             IEnumerable<TwitterStatus> tweets = service.ListTweetsOnUserTimeline(options);
             dgTweets.DataContext = tweets;
         }
+
+        private void txtTweet_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            const int MAX_CHARS = 140;
+
+            int charCount = txtTweet.Text.Length;
+            tbCharacter_count.Text = string.Format("{0} / {1}", charCount, MAX_CHARS);
+
+            if (charCount > MAX_CHARS)
+                btnSend_tweet.IsEnabled = false;
+            else
+                btnSend_tweet.IsEnabled = true;
+        }
     }
 }
