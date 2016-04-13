@@ -95,5 +95,12 @@ namespace twitter_client
             else
                 spSend_tweet.Visibility = Visibility.Collapsed;
         }
+
+        private void btnGet_my_tweets_Click(object sender, RoutedEventArgs e)
+        {
+            ListTweetsOnUserTimelineOptions options = new ListTweetsOnUserTimelineOptions();
+            IEnumerable<TwitterStatus> tweets = service.ListTweetsOnUserTimeline(options);
+            dgTweets.DataContext = tweets;
+        }
     }
 }

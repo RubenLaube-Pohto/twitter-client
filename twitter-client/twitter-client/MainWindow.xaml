@@ -10,7 +10,7 @@
         <DockPanel Margin="10">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                 <Button x:Name="btnGet_timeline" Click="btnGet_timeline_Click">Get home timeline</Button>
-                <Button x:Name="btnGet_my_tweets" Margin="5,0,0,0">Get my tweets</Button>
+                <Button x:Name="btnGet_my_tweets" Margin="5,0,0,0" Click="btnGet_my_tweets_Click">Get my tweets</Button>
                 <Button x:Name="btnNew_tweet" Margin="5,0,0,0" Click="btnNew_tweet_Click">New tweet</Button>
                 <Button x:Name="btnLogout" Click="btnLogout_Click" Margin="5,0,0,0">Logout</Button>
             </StackPanel>
