@@ -7,22 +7,20 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <StackPanel Margin="10">
-            <StackPanel Orientation="Horizontal">
+        <DockPanel Margin="10">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
                 <Button x:Name="btnGet_timeline" Click="btnGet_timeline_Click">Get home timeline</Button>
                 <Button x:Name="btnGet_my_tweets" Margin="5,0,0,0">Get my tweets</Button>
                 <Button x:Name="btnSend_tweet" Margin="5,0,0,0">Send tweet</Button>
                 <Button x:Name="btnLogout" Click="btnLogout_Click" Margin="5,0,0,0">Logout</Button>
             </StackPanel>
-            <StackPanel Margin="0,5,0,0">
-                <DataGrid x:Name="dgTweets" ItemsSource="{Binding}" AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Author" Binding="{Binding Path=Author.Name}"/>
-                        <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
-        </StackPanel>
+            <DataGrid x:Name="dgTweets" DockPanel.Dock="Left" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,5,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Author" Binding="{Binding Path=Author.Name}"/>
+                    <DataGridTextColumn Header="Tweet" Binding="{Binding Path=Text}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </DockPanel>
 
     </Grid>
 </Window>
