@@ -14,11 +14,11 @@ The purpose of this project was to create a simple client program for Twitter us
 
 ## Requirements
 
-[TweetSharp](https://github.com/danielcrenna/tweetsharp) 2.3.1
+[TweetSharp](https://github.com/danielcrenna/tweetsharp) 2.3.1.2
 
 Installation with NuGet Package Manager Console [[1]]:
 
-	Install-Package TweetSharp -Version 2.3.1
+	Install-Package TweetSharp-Unofficial
 
 In order to authorize the app on Twitter it was required to register the app. This provided the keys required to connect to the API with OAuth. The keys were stored in App.config which is not included in this repo because the keys were considered sensitive information.
 
@@ -31,6 +31,10 @@ Twitterizer seemed too complicated so TweetrSharp was chosen instead.
 ### Refreshing user tokens
 
 At the moment Twitter does not expire user tokens. The token becomes unusable if the user rejects the application from their settings.
+
+### Old and new user ids on Twitter
+
+TweetSharp 2.3.1 broke when getting timeline because it didn't understand the difference between old and new user ids. TweetSharp 2.3.1.2 had a fix for this. [[2]]
 
 ## Closing Report
 
@@ -78,6 +82,8 @@ The application is a bit minimalistic and there was not that much time spent. Ho
 | 31.03.2016 | 5 | Change to TweetSharp. Add basic login and get timeline |
 | 04.04.2016 | 3 | Implement login pin checking and save credentials |
 | 13.04.2016 | 5 | Add final implementations and documentation |
-| Total hours: | 17 |  |
+| 14.04.2016 | 1 | Fix problem with Twitter's new user ids |
+| Total hours: | 18 |  |
 
-[1]: https://www.nuget.org/packages/TweetSharp/
+[1]: https://www.nuget.org/packages/TweetSharp-Unofficial/
+[2]: http://stackoverflow.com/questions/19676216/tweetsharp-issue-while-getting-the-userprofile-and-timeline
